@@ -1,0 +1,25 @@
+name: Bootcamp2020 by Saad
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: install NodeJs
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: '20'
+
+    - name: Install Surge
+      run: npm install --g surge
+
+    - name: Run Surge
+      run: surge ./ saadbootcamp202.surge.sh --token ${{secret.bootcamp2020}}
